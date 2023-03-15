@@ -39,7 +39,7 @@ const MobileNav: FC<MobileNavProps> = ({ mobileMenuOpen, setMobileMenuOpen }): J
 				</div>
 				<hr className=' my-6'></hr>
 				<div className='mt-6 flow-root'>
-					<LinkElement href='/login' className="-m-2.5 p-2.5 text-gray-700 py-6">
+					<LinkElement href='/login' className="-m-2.5 p-2.5">
 						Log In <span aria-hidden="true">&rarr;</span>
 					</LinkElement>
 

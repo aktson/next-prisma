@@ -27,7 +27,7 @@ const Nav: FC<NavProps> = ({ setMobileMenuOpen }): JSX.Element => {
                 <LinkElement href="#" > Company</LinkElement>
             </div>
             <div className="flex lg:hidden">
-                <PrimaryBtn onClick={() => setMobileMenuOpen(true)} className="-m-2.5 p-2.5 text-gray-700">
+                <PrimaryBtn onClick={() => setMobileMenuOpen(true)} className=" p-2.5">
                     open
                     {/* icon to be added */}
                     {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
