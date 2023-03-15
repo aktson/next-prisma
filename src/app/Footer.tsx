@@ -13,8 +13,10 @@ const Footer: FC<FooterProps> = (): JSX.Element => {
 
     /** return statement */
     return (
-        <footer>
-            Footer
+        <footer className='bg-grey-500 py-8 px-2'>
+            <p className="text-center text-gray-500 text-sm">
+                &copy;2023 SONI. All rights reserved.
+            </p>
         </footer>
     );
 };
