@@ -1,29 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
 body {
-  @apply flex flex-col h-screen w-screen;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	min-width: 100vw;
 }
 
 main {
-  @apply flex-1;
+	flex: 1 0 auto;
 }
 
 a {
-  @apply text-inherit;
-  text-decoration: none;
+	color: text-inherit;
+	text-decoration: none;
 }

@@ -1,15 +1,23 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import PrimaryBtn from '@/components/common/buttons/PrimaryBtn'
+/***** IMPORTS *****/
+import React, { FC } from "react";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import PrimaryBtn from "@/components/common/buttons/PrimaryBtn";
+import SEcondaryBtn from "@/components/common/buttons/SecondaryBtn";
 
+/***** TYPES *****/
+interface HomeProps {}
 
-const inter = Inter({ subsets: ['latin'] })
+/***** COMPONENT-FUNCTION *****/
+const Home: FC<HomeProps> = (): JSX.Element => {
+	/*** Return statement ***/
+	return (
+		<div>
+			HOME
+			<PrimaryBtn>Soni</PrimaryBtn>
+			<SEcondaryBtn>Ankit</SEcondaryBtn>
+		</div>
+	);
+};
 
-export default function Home() {
-  return (
-    <div>HOMEPAGE
-
-      <PrimaryBtn>Ankit</PrimaryBtn>
-    </div>
-  )
-}
+export default Home;
