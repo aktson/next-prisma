@@ -2,8 +2,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import PrimaryBtn from "@/components/common/buttons/PrimaryBtn";
-import SEcondaryBtn from "@/components/common/buttons/SecondaryBtn";
 
 /***** TYPES *****/
 interface HomeProps {}
@@ -14,8 +12,11 @@ const Home: FC<HomeProps> = (): JSX.Element => {
 	return (
 		<div>
 			HOME
-			<PrimaryBtn>Soni</PrimaryBtn>
-			<SEcondaryBtn>Ankit</SEcondaryBtn>
+			<h1>h1</h1>
+			<h2>h2</h2>
+			<h3>h3</h3>
+			<h4>h4</h4>
+			<h5>h5</h5>
 		</div>
 	);
 };

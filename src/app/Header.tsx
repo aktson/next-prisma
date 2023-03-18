@@ -13,12 +13,8 @@ const Header: FC<HeaderProps> = (): JSX.Element => {
 	/** return statement */
 	return (
 		<header className="">
-			<LinkElement href="/">Home</LinkElement>
-			<LinkElement href="/about">About</LinkElement>
-			<LinkElement href="#">Marketplacs</LinkElement>
-			<LinkElement href="#"> Company</LinkElement>
 			{/* <Nav setMobileMenuOpen={setMobileMenuOpen} /> */}
-			{/* <MobileNav setMobileMenuOpen={setMobileMenuOpen} mobileMenuOpen={mobileMenuOpen} /> */}
+			<MobileNav />
 		</header>
 	);
 };

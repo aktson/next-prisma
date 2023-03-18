@@ -1,10 +1,11 @@
 "use client";
 /***** IMPORTS *****/
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, MantineThemeOverride } from "@mantine/core";
 import React, { FC, ReactNode } from "react";
-import "./globals.css";
+import "./styles/globals.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import { myTheme } from "./styles/theme";
 
 /***** TYPES *****/
 interface AppProps {
@@ -15,7 +16,7 @@ interface AppProps {
 const App: FC<AppProps> = ({ children }): JSX.Element => {
 	/*** Return statement ***/
 	return (
-		<MantineProvider withGlobalStyles withNormalizeCSS>
+		<MantineProvider withGlobalStyles withNormalizeCSS theme={myTheme}>
 			<Header />
 			<main>{children}</main>
 			<Footer />

@@ -4,7 +4,7 @@ import React, { FC, ReactNode } from "react";
 import { Button } from "@mantine/core";
 
 /***** INTERFACES *****/
-interface SEcondaryBtnProps {
+interface SecondaryBtnProps {
 	children?: ReactNode;
 	disabled?: boolean;
 	className?: string | string[];
@@ -16,7 +16,7 @@ interface SEcondaryBtnProps {
 }
 
 /***** COMPONENT-FUNCTION *****/
-const SEcondaryBtn: FC<SEcondaryBtnProps> = ({ className, disabled, loading, onClick, children, fullWidth, leftIcon }): JSX.Element => {
+const SecondaryBtn: FC<SecondaryBtnProps> = ({ className, disabled, loading, onClick, children, fullWidth, leftIcon }): JSX.Element => {
 	/** return statement */
 	return (
 		<Button
@@ -35,4 +35,4 @@ const SEcondaryBtn: FC<SEcondaryBtnProps> = ({ className, disabled, loading, onC
 };
 
 /***** EXPORTS *****/
-export default SEcondaryBtn;
+export default SecondaryBtn;
