@@ -1,54 +1,73 @@
+"use client";
 /***** IMPORTS *****/
-import { Container } from "@mantine/core";
 import React, { FC } from "react";
+import { createStyles } from "@mantine/core";
+import { TextInput, PasswordInput, Text, Paper, Group, Divider, Stack, Container } from "@mantine/core";
+import SecondaryBtn from "@/components/common/buttons/SecondaryBtn";
+import PrimaryBtn from "@/components/common/buttons/PrimaryBtn";
+import LinkElement from "@/components/common/LinkElement";
 
 /***** INTERFACES *****/
 interface pageProps {}
 
+const useStyles = createStyles((theme) => ({
+	link: {
+		color: theme.colors.blue[5],
+		marginLeft: "0.2em",
+	},
+}));
 /***** COMPONENT-FUNCTION *****/
-const page: FC<pageProps> = (): JSX.Element => {
+const Login: FC<pageProps> = (): JSX.Element => {
+	const { classes } = useStyles();
+
 	/** return statement */
 	return (
-		<div className="w-full max-w-md">
-			<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-				<h2>Login</h2>
-				<div className="mb-4">
-					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-						Username
-					</label>
-					<input
-						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="username"
-						type="text"
-						placeholder="Username"
-					/>
-				</div>
-				<div className="mb-6">
-					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-						Password
-					</label>
-					<input
-						className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-						id="password"
-						type="password"
-						placeholder="******************"
-					/>
-					<p className="text-red-500 text-xs italic">Please choose a password.</p>
-				</div>
-				<div className="flex items-center justify-between">
-					<button
-						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-						type="button">
-						Sign In
-					</button>
-					<a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-						Forgot Password?
-					</a>
-				</div>
-			</form>
-		</div>
+		<Container size="30rem">
+			<Paper radius="md" p="lg" withBorder>
+				<h1 style={{ marginBottom: "1em" }}>Login</h1>
+
+				<form onSubmit={() => console.log("submitting")}>
+					<Stack spacing="sm">
+						<TextInput
+							label="Email"
+							placeholder="hello@mantine.dev"
+							value=""
+							// error={"Invalid email"}
+							radius="md"
+						/>
+
+						<PasswordInput
+							label="Password"
+							placeholder="Your password"
+							value=""
+							// error={"Password should include at least 6 characters"}
+							radius="md"
+						/>
+					</Stack>
+
+					<Group position="apart" mt="xl">
+						<PrimaryBtn type="submit" fullWidth={true}>
+							login
+						</PrimaryBtn>
+						<Text size="xs" mt="0em" align="right">
+							Do not have an account?
+							<LinkElement href="/signup" className={classes.link}>
+								Register
+							</LinkElement>
+						</Text>
+					</Group>
+				</form>
+
+				<Divider label="Or continue with" labelPosition="center" my="lg" />
+
+				<Group grow mb="md" mt="md">
+					<SecondaryBtn>Google</SecondaryBtn>
+					<SecondaryBtn>Twitter</SecondaryBtn>
+				</Group>
+			</Paper>
+		</Container>
 	);
 };
 
 /***** EXPORTS *****/
-export default page;
+export default Login;

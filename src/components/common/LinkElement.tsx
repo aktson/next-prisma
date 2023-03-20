@@ -7,7 +7,7 @@ import React, { FC, ReactNode } from "react";
 interface LinkElementProps {
 	children: ReactNode;
 	href: string;
-	className?: string | string[];
+	className?: string | undefined;
 }
 
 const useSTayle = createStyles((theme) => ({
@@ -28,7 +28,7 @@ const LinkElement: FC<LinkElementProps> = ({ children, href, className }): JSX.E
 	const { classes, theme } = useSTayle();
 	/** return statement */
 	return (
-		<Link href={href} className={classes.link}>
+		<Link href={href} className={className}>
 			{children}
 		</Link>
 	);
