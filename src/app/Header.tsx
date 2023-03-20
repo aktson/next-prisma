@@ -1,8 +1,6 @@
 /***** IMPORTS *****/
 import Nav from "@/components/nav/Nav";
-import MobileNav from "@/components/nav/MobileNav";
 import React, { FC, useState } from "react";
-import LinkElement from "@/components/common/LinkElement";
 
 /***** INTERFACES *****/
 interface HeaderProps {}
@@ -14,7 +12,7 @@ const Header: FC<HeaderProps> = (): JSX.Element => {
 	return (
 		<header className="">
 			{/* <Nav setMobileMenuOpen={setMobileMenuOpen} /> */}
-			<MobileNav />
+			<Nav />
 		</header>
 	);
 };

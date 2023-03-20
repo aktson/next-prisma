@@ -20,6 +20,7 @@ const PrimaryBtn: FC<PrimaryBtnProps> = ({ className, disabled, loading, onClick
 	/** return statement */
 	return (
 		<Button
+			variant="filled"
 			fullWidth={fullWidth}
 			radius="md"
 			onClick={onClick}
