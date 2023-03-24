@@ -16,13 +16,14 @@ interface PrimaryBtnProps {
 }
 
 /***** COMPONENT-FUNCTION *****/
-const PrimaryBtn: FC<PrimaryBtnProps> = ({ className, disabled, loading, onClick, children, fullWidth, leftIcon }): JSX.Element => {
+const PrimaryBtn: FC<PrimaryBtnProps> = ({ className, type, disabled, loading, onClick, children, fullWidth, leftIcon }): JSX.Element => {
 	/** return statement */
 	return (
 		<Button
 			variant="filled"
 			fullWidth={fullWidth}
 			radius="md"
+			type={type}
 			onClick={onClick}
 			loading={loading}
 			loaderPosition="right"
