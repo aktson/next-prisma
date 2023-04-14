@@ -20,6 +20,7 @@ model Post {
 }
 
 model User {
+<<<<<<< HEAD
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   name      String?
@@ -27,6 +28,13 @@ model User {
   address   Address? @relation(fields: [addressId], references: [id])
   posts     Post[]
   addressId String?  @db.ObjectId
+=======
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  email   String   @unique
+  name    String?
+  address String?
+  posts   Post[]
+>>>>>>> ae5e09d336a00adc0807ee4909c4b798da022f13
 }
 
 // Address is an embedded document
