@@ -25,7 +25,7 @@ export async function getUsers() {
  * @param res - Next.js API Response
  * TODO IMPLEMENT NEXT AUTH @param session - NextAuth.js session 
  */
-export async function createUser(res: NextApiResponse, req: NextApiRequest) {
+export async function createUser(req: NextApiRequest, res: NextApiResponse,) {
 
     const { name, email, password } = req.body;
 

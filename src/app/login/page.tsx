@@ -12,9 +12,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/constants/yupSchema/loginSchema";
 import { IconEyeCheck, IconEyeOff } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
+import { signIn } from "next-auth/react";
 
 /***** INTERFACES *****/
-interface pageProps {}
+interface pageProps { }
 
 interface LoginFormValues {
 	email: string;
@@ -97,7 +98,7 @@ const Login: FC<pageProps> = (): JSX.Element => {
 				<Divider label="Or continue with" labelPosition="center" my="lg" />
 
 				<Group grow mb="md" mt="md">
-					<SecondaryBtn>Google</SecondaryBtn>
+					<SecondaryBtn onClick={() => signIn("github", { callbackUrl: "http://localhost:3000/" })}>Google</SecondaryBtn>
 					<SecondaryBtn>Twitter</SecondaryBtn>
 				</Group>
 			</Paper>
