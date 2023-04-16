@@ -10,15 +10,12 @@ import { Container, Divider, Group, Paper, PasswordInput, Stack, TextInput, Text
 import { IconEyeCheck, IconEyeOff } from "@tabler/icons-react";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import { SignUpFormValues } from "@/types/uiTypes";
+import { signIn } from "next-auth/react";
+import { signUp } from "@/constants/actions/actions";
 
 /***** TYPES *****/
 interface SignUpProps {}
-
-interface SignUpFormValues {
-	fullName: string;
-	email: string;
-	password?: string;
-}
 
 const useStyles = createStyles((theme) => ({
 	link: {
@@ -41,8 +38,20 @@ const SignUp: FC<SignUpProps> = (): JSX.Element => {
 	} = useForm<SignUpFormValues>({ resolver: yupResolver(signUpSchema) });
 
 	/***functions ***/
-	const handleFormSubmit = (data: SignUpFormValues) => {
-		console.log("data", data);
+	const handleFormSubmit = async (data: SignUpFormValues) => {
+		setIsSubmitting(true);
+		try {
+			const response = await fetch("http://localhost:3000/api/users", {
+				method: "POST",
+				body: JSON.stringify(data),
+			});
+			const result = await response.json();
+			console.log(result);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	/*** Return statement ***/
@@ -54,13 +63,7 @@ const SignUp: FC<SignUpProps> = (): JSX.Element => {
 
 					<form onSubmit={handleSubmit(handleFormSubmit)}>
 						<Stack spacing="sm">
-							<TextInput
-								{...register("fullName")}
-								label="Full name"
-								placeholder="Full name"
-								error={errors?.fullName?.message}
-								radius="md"
-							/>
+							<TextInput {...register("name")} label="Full name" placeholder="Full name" error={errors?.name?.message} radius="md" />
 							<TextInput {...register("email")} label="Email" placeholder="Email" error={errors?.email?.message} radius="md" />
 							<PasswordInput
 								{...register("password")}

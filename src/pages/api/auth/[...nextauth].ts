@@ -9,6 +9,9 @@ export const authOptions: NextAuthOptions = {
 	session: {
 		strategy: "jwt",
 	},
+	pages: {
+		signIn: "http://localhost:3000/signin",
+	},
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -27,6 +30,7 @@ export const authOptions: NextAuthOptions = {
 				email: { label: "Email", type: "email", placeholder: "email" },
 				password: { label: "Password", type: "password", placeholder: "password" },
 			},
+
 			async authorize(credentials, req) {
 				const { email, password } = credentials as UserLoginFields;
 				if (!email || !password) {

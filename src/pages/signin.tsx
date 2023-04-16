@@ -34,7 +34,7 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 	const { classes } = useStyles();
 
 	const { data: session, status } = useSession();
-	console.log("session", session);
+	console.log(session);
 
 	const [visible, { toggle }] = useDisclosure(false);
 
@@ -51,18 +51,24 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 	} = useForm<SignInFormValues>({ resolver: yupResolver(loginSchema) });
 
 	/*** functions ***/
-	const handleFormSubmit = (data: SignInFormValues) => {
+	const handleFormSubmit = async (data: SignInFormValues) => {
 		setIsSubmitting(true);
-		console.log("data", data);
 
-		// try {
-		// 	const { email, password } = data;
-		// 	if (!email && !password) return;
-		// } catch (error) {
-		// 	console.log("error", error);
-		// } finally {
-		// 	setIsSubmitting(false);
-		// }
+		const { email, password } = data;
+
+		try {
+			const response = await signIn("credentials", {
+				email: email,
+				password: password,
+				redirect: false,
+			});
+
+			console.log("response", response);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	/** return statement */
@@ -103,7 +109,7 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 					<Divider label="Or continue with" labelPosition="center" my="lg" />
 
 					<Group grow mb="md" mt="md">
-						<SecondaryBtn onClick={() => signIn("github", { callbackUrl: "http://localhost:3000/" })}>Google</SecondaryBtn>
+						<SecondaryBtn onClick={() => signIn("google", { callbackUrl: "http://localhost:3000/" })}>Google</SecondaryBtn>
 						<SecondaryBtn onClick={() => signIn()}>Twitter</SecondaryBtn>
 					</Group>
 				</Paper>

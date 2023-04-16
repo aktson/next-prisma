@@ -8,6 +8,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconNotification, IconCode, IconBook, IconChartPie3, IconFingerprint, IconCoin, IconChevronDown } from "@tabler/icons-react";
 import SecondaryBtn from "../common/buttons/SecondaryBtn";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 /***** INTERFACES *****/
 interface NavProps {}
@@ -56,9 +57,7 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 				</Group>
 
 				<Group className={classes.hiddenMobile} spacing="0.5em">
-					<SecondaryBtn>
-						<Link href="/signin"> Login</Link>
-					</SecondaryBtn>
+					<SecondaryBtn onClick={() => signIn()}>Login</SecondaryBtn>
 					<PrimaryBtn>
 						<Link href="/signup"> Sign Up</Link>
 					</PrimaryBtn>
@@ -85,9 +84,7 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 					<Divider my="sm" color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"} />
 
 					<Stack spacing="xs" align="center">
-						<SecondaryBtn>
-							<Link href="/signin"> Login</Link>
-						</SecondaryBtn>
+						<SecondaryBtn onClick={() => signIn()}>Login</SecondaryBtn>
 						<PrimaryBtn>
 							<Link href="/signup"> Sign Up</Link>
 						</PrimaryBtn>
