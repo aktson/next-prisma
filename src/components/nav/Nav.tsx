@@ -45,7 +45,9 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 	return (
 		<>
 			<Group position="apart" sx={{ padding: "1em" }}>
-				<h2>LOGO</h2>
+				<LinkElement href="/">
+					<h2> LOGO</h2>
+				</LinkElement>
 				<Group spacing={16} className={classes.hiddenMobile}>
 					<LinkElement href="/"> Home</LinkElement>
 					<LinkElement href="/about"> About</LinkElement>
@@ -55,7 +57,7 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 
 				<Group className={classes.hiddenMobile} spacing="0.5em">
 					<SecondaryBtn>
-						<Link href="/login"> Login</Link>
+						<Link href="/signin"> Login</Link>
 					</SecondaryBtn>
 					<PrimaryBtn>
 						<Link href="/signup"> Sign Up</Link>
@@ -84,7 +86,7 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 
 					<Stack spacing="xs" align="center">
 						<SecondaryBtn>
-							<Link href="/login"> Login</Link>
+							<Link href="/signin"> Login</Link>
 						</SecondaryBtn>
 						<PrimaryBtn>
 							<Link href="/signup"> Sign Up</Link>
