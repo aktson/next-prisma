@@ -6,11 +6,23 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/prisma/prisma";
 
 export const authOptions: NextAuthOptions = {
+
 	session: {
 		strategy: "jwt",
 	},
 	pages: {
 		signIn: "http://localhost:3000/signin",
+	},
+	callbacks: {
+		async session({ session, user }) {
+			return Promise.resolve({
+				...session,
+				user: {
+					...session.user,
+					id: user.id,
+				},
+			});
+		},
 	},
 	providers: [
 		GoogleProvider({
@@ -58,3 +70,4 @@ export const authOptions: NextAuthOptions = {
 	],
 };
 export default NextAuth(authOptions);
+
