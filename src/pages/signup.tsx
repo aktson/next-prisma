@@ -15,7 +15,7 @@ import { signIn } from "next-auth/react";
 import { signUp } from "@/constants/actions/actions";
 
 /***** TYPES *****/
-interface SignUpProps {}
+interface SignUpProps { }
 
 const useStyles = createStyles((theme) => ({
 	link: {
@@ -28,7 +28,6 @@ const useStyles = createStyles((theme) => ({
 const SignUp: FC<SignUpProps> = (): JSX.Element => {
 	const { classes } = useStyles();
 	/*** states***/
-	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
 	const {

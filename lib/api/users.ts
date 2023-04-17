@@ -1,5 +1,4 @@
 import prisma from "@/prisma/prisma";
-import { User, UserCreateInput } from "../dbTypes/dbTypes";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -31,8 +30,7 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 
 	// validate all fields
 	if (!name || !email || !password) {
-		res.status(400);
-		return new Error("Please include all fields");
+		return res.status(400).json({ status: "Bad request", statusCode: res.statusCode, message: "Please include all fields" });
 	}
 
 	try {
@@ -41,9 +39,9 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 			where: { email },
 		});
 		if (existingUser) {
-			res.status(400);
-			return new Error("User already exist");
-		}
+			return res.status(400).json({ status: "Bad request", statusCode: res.statusCode, message: "User already exist" });
+		};
+
 		// hash password
 		const salt = await bcrypt.genSalt(10);
 		const hasdedPassword = await bcrypt.hash(password, salt);
@@ -54,18 +52,19 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 				name: name,
 				email: email,
 				password: hasdedPassword,
-			} as UserCreateInput,
+			},
 		});
 
 		if (user) {
 			res.status(201).json({
-				_id: user.id,
+				id: user.id,
 				name: user.name,
 				email: user.email,
 			});
 		}
 	} catch (error) {
-		return { error };
+		console.log(error)
+		res.status(500).end({ error });
 	}
 }
 
