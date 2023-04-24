@@ -1,6 +1,6 @@
 "use client";
 /***** IMPORTS *****/
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Button, createStyles } from "@mantine/core";
 import { TextInput, PasswordInput, Text, Paper, Group, Divider, Stack, Container } from "@mantine/core";
 import SecondaryBtn from "@/components/common/buttons/SecondaryBtn";
@@ -34,7 +34,6 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 	const { classes } = useStyles();
 
 	const { data: session, status } = useSession();
-	console.log(session);
 
 	/***States ***/
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -59,6 +58,7 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 				password: password,
 				redirect: false,
 			});
+			// if (response?.error) not;
 			if (response?.ok) router.push("/");
 		} catch (error) {
 			console.log(error);
@@ -67,6 +67,9 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 		}
 	};
 
+	useEffect(() => {
+		if (session) router.push("/");
+	}, [session]);
 	/** return statement */
 	return (
 		<Layout>
