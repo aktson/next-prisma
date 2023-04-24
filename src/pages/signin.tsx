@@ -36,10 +36,7 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 	const { data: session, status } = useSession();
 	console.log(session);
 
-	const [visible, { toggle }] = useDisclosure(false);
-
 	/***States ***/
-	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
 	/*** variables ***/
@@ -62,8 +59,7 @@ const SignIn: FC<SignInProps> = (): JSX.Element => {
 				password: password,
 				redirect: false,
 			});
-
-			console.log("response", response);
+			if (response?.ok) router.push("/");
 		} catch (error) {
 			console.log(error);
 		} finally {

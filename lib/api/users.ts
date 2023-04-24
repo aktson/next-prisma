@@ -2,6 +2,7 @@ import prisma from "@/prisma/prisma";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import errorHandler from "../errorHandler/errorHandler";
 
 const JWT_SECRET = "nextprismasexret";
 /**
@@ -30,7 +31,7 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 
 	// validate all fields
 	if (!name || !email || !password) {
-		return res.status(400).json({ status: "Bad request", statusCode: res.statusCode, message: "Please include all fields" });
+		return res.status(400).json({ status: "Bad request", statusCode: res.statusCode, message: "Missing required fields" });
 	}
 
 	try {
@@ -40,7 +41,7 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 		});
 		if (existingUser) {
 			return res.status(400).json({ status: "Bad request", statusCode: res.statusCode, message: "User already exist" });
-		};
+		}
 
 		// hash password
 		const salt = await bcrypt.genSalt(10);
@@ -63,7 +64,7 @@ export async function createUser(req: NextApiRequest, res: NextApiResponse) {
 			});
 		}
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 		res.status(500).end({ error });
 	}
 }
