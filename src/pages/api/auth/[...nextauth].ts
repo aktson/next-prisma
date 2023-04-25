@@ -6,13 +6,14 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/prisma/prisma";
 
 export const authOptions: NextAuthOptions = {
-
 	session: {
 		strategy: "jwt",
+		maxAge: 30 * 24 * 60 * 60, // 30 days
 	},
 	pages: {
-		signIn: "http://localhost:3000/signin",
+		signIn: "/signin/",
 	},
+
 	callbacks: {
 		jwt: ({ token, user }) => {
 			if (user) {
@@ -32,6 +33,7 @@ export const authOptions: NextAuthOptions = {
 		secret: "test",
 		// encryption: true,
 	},
+
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -64,10 +66,15 @@ export const authOptions: NextAuthOptions = {
 				if (!user) {
 					throw new Error("No user found");
 				}
-				const isPasswordValid = await compare(password, user.password);
-				if (!isPasswordValid) {
-					throw new Error("Invalud credentials");
+				if (!user.password) {
+					throw new Error("Username or password missing");
 				}
+				const isPasswordValid = await compare(password, user.password);
+
+				if (!isPasswordValid) {
+					throw new Error("Invalid credentials");
+				}
+
 				return {
 					id: user.id,
 					email: user.email,
@@ -78,4 +85,3 @@ export const authOptions: NextAuthOptions = {
 	],
 };
 export default NextAuth(authOptions);
-
