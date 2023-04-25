@@ -14,15 +14,23 @@ export const authOptions: NextAuthOptions = {
 		signIn: "http://localhost:3000/signin",
 	},
 	callbacks: {
-		async session({ session, user }) {
-			return Promise.resolve({
-				...session,
-				user: {
-					...session.user,
-					id: user.id,
-				},
-			});
+		jwt: ({ token, user }) => {
+			if (user) {
+				token.id = user.id
+			}
+			return token;
 		},
+		session: ({ session, token }) => {
+			if (token) {
+				session.id = token.id
+			}
+			return session;
+		}
+	},
+	secret: "test",
+	jwt: {
+		secret: "test",
+		// encryption: true,
 	},
 	providers: [
 		GoogleProvider({
