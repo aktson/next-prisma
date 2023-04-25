@@ -16,7 +16,7 @@ import { signIn, useSession } from "next-auth/react";
 import Layout from "@/components/Layout/Layout";
 
 /***** INTERFACES *****/
-interface SignInProps {}
+interface SignInProps { }
 
 interface SignInFormValues {
 	email: string;

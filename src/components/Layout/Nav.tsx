@@ -3,12 +3,12 @@
 import React, { FC } from "react";
 import PrimaryBtn from "../common/buttons/PrimaryBtn";
 import LinkElement from "../common/LinkElement";
-import { createStyles, Group, UnstyledButton, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem, Flex, Stack } from "@mantine/core";
+import { createStyles, Group, Divider, Burger, Drawer, ScrollArea, rem, Text, Stack } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconNotification, IconCode, IconBook, IconChartPie3, IconFingerprint, IconCoin, IconChevronDown } from "@tabler/icons-react";
 import SecondaryBtn from "../common/buttons/SecondaryBtn";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 /***** INTERFACES *****/
 interface NavProps { }
@@ -39,8 +39,8 @@ const useStyles = createStyles((theme) => ({
 /***** COMPONENT-FUNCTION *****/
 const Nav: FC<NavProps> = (): JSX.Element => {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-	const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
 	const { classes, theme } = useStyles();
+	const { data: session } = useSession();
 
 	/** return statement */
 	return (
@@ -56,11 +56,25 @@ const Nav: FC<NavProps> = (): JSX.Element => {
 					<LinkElement href="#"> Company</LinkElement>
 				</Group>
 
-				<Group className={classes.hiddenMobile} spacing="0.5em">
-					<SecondaryBtn onClick={() => signIn()}>Login</SecondaryBtn>
-					<PrimaryBtn>
-						<Link href="/signup"> Sign Up</Link>
-					</PrimaryBtn>
+				<Group className={classes.hiddenMobile} spacing="0.6em">
+
+					{session?.user &&
+						<>
+							<Text fz="md">Hello, {session.user.name?.toUpperCase()}</Text>
+							<SecondaryBtn onClick={() => signOut()}>Sign Out</SecondaryBtn>
+						</>
+					}
+
+					{!session?.user &&
+						<>
+							<SecondaryBtn onClick={() => signIn()}>Sign In</SecondaryBtn>
+							<PrimaryBtn>
+								<Link href="/signup"> Sign Up</Link>
+							</PrimaryBtn>
+						</>
+					}
+
+
 				</Group>
 				<Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
 			</Group>
