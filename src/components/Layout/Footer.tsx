@@ -4,7 +4,7 @@ import { createStyles, Container, Group, ActionIcon, rem } from "@mantine/core";
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from "@tabler/icons-react";
 
 /***** INTERFACES *****/
-interface FooterProps {}
+interface FooterProps { }
 
 const useStyles = createStyles((theme) => ({
 	footer: {
@@ -38,7 +38,7 @@ const Footer: FC<FooterProps> = (): JSX.Element => {
 	/** return statement */
 	return (
 		<footer className={classes.footer}>
-			<Container className={classes.inner}>
+			<Container className={classes.inner} size="xl">
 				<h4>LOGO</h4>
 				<Group spacing={0} className={classes.links} position="right" noWrap>
 					<ActionIcon size="lg">

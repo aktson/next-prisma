@@ -11,7 +11,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 
 /***** INTERFACES *****/
-interface NavProps {}
+interface NavProps { }
 
 const useStyles = createStyles((theme) => ({
 	dropdownFooter: {

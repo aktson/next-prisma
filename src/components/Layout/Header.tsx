@@ -1,9 +1,10 @@
 /***** IMPORTS *****/
-import Nav from "@/components/nav/Nav";
+import Nav from "@/components/Layout/Nav";
+import { Container } from "@mantine/core";
 import React, { FC, useState } from "react";
 
 /***** INTERFACES *****/
-interface HeaderProps {}
+interface HeaderProps { }
 
 /***** COMPONENT-FUNCTION *****/
 const Header: FC<HeaderProps> = (): JSX.Element => {
@@ -12,7 +13,9 @@ const Header: FC<HeaderProps> = (): JSX.Element => {
 	return (
 		<header className="">
 			{/* <Nav setMobileMenuOpen={setMobileMenuOpen} /> */}
-			<Nav />
+			<Container size="xl">
+				<Nav />
+			</Container>
 		</header>
 	);
 };
