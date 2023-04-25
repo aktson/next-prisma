@@ -1,7 +1,11 @@
 {
 	"compilerOptions": {
 		"target": "ES2016",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -20,13 +24,31 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"],
-			"@/prisma/*": ["./prisma/*"],
-			"@/public/*": ["./public/*"],
-			"@/components/*": ["./src/components/*"],
-			"@/lib/*": ["./lib/*"]
-		}
+			"@/*": [
+				"./src/*"
+			],
+			"@/prisma/*": [
+				"./prisma/*"
+			],
+			"@/public/*": [
+				"./public/*"
+			],
+			"@/components/*": [
+				"./src/components/*"
+			],
+			"@/lib/*": [
+				"./lib/*"
+			]
+		},
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-	"exclude": ["node_modules"]
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"next-auth.d.ts",
+	],
+	"exclude": [
+		"node_modules"
+	]
 }
